@@ -7,7 +7,7 @@ const character = ({ character, handleClick, selectedcharacter }) => {
       }}
     >
       <span>
-        {character.name}. {character.height} {character.mass}
+        {character.name} {character.height} {character.mass}
       </span>
     </div>
   );

@@ -1,5 +1,6 @@
 import "./App.css";
 import User from "./components/User";
+import Modal from "./components/Modal";
 import { useEffect, useState } from "react";
 
 function App() {
@@ -24,26 +25,33 @@ function App() {
     setSelectedUser(character);
   };
 
-  //const toggleModal = () => {};
+  const toggleModal = () => {
+    setSelectedUser(null);
+  };
 
   return (
-    <div className="App">
-      <h1>Star Wars Examples</h1>
-      <input onChange={filterByName} />
-      <article>{inputText}</article>
-      {characters
-        ? characters.map((character) => {
-            return (
-              <User
-                key={character.name}
-                character={character}
-                handleClick={clickOnUser}
-                selectedcharacter={selectedUser}
-              />
-            );
-          })
-        : null}
-    </div>
+    <main>
+      {selectedUser ? (
+        <Modal character={selectedUser} toggleModal={toggleModal} />
+      ) : null}
+      <div className="App">
+        <h1 className="text-3xl font-bold underline">Star Wars Examples</h1>
+        <input onChange={filterByName} />
+        <article>{inputText}</article>
+        {characters
+          ? characters.map((character) => {
+              return (
+                <User
+                  key={character.name}
+                  character={character}
+                  handleClick={clickOnUser}
+                  selectedcharacter={selectedUser}
+                />
+              );
+            })
+          : null}
+      </div>
+    </main>
   );
 }
 
